@@ -12,14 +12,17 @@ USE `CarRental` ;
 -- ------------------------------------------------------------------
 
 -- create car table
--- TODO: car image - a separate table?
 create table `car` (
     `car_id` int NOT NULL AUTO_INCREMENT,
     `description` varchar(100) NOT NULL,
+    `category` varchar(25) NOT NULL,    -- TODO: make it a foreign key?
     `brand` varchar(25) NOT NULL,       -- TODO: make it a foreign key?
     `color` varchar(15) NOT NULL,
     `capacity` decimal(3, 0) NOT NULL,
+    `fuel_type` varchar(25) NOT NULL,
+    `image` blob,              -- `image` blob NOT NULL,
     `rate` float NOT NULL,
+    `rent_price` float NOT NULL,
     `owner_id` int NOT NULL,
 
     primary key (`car_id`),
@@ -33,6 +36,7 @@ create table `review` (
     `review` varchar(100) NOT NULL,
     `rate` decimal(1, 0) NOT NULL,
     `date` date NOT NULL,
+    `renter_trips_taken` decimal(4, 0) NOT NULL,
     `customer_id` int NOT NULL,
     `car_id` int NOT NULL,
 
@@ -45,9 +49,12 @@ create table `review` (
 -- create customer table
 create table `customer` (
     `customer_id` int NOT NULL AUTO_INCREMENT,
-    `customer_name` varchar(50) NOT NULL,
+    `name` varchar(50) NOT NULL,
+    `gender` varchar(10) NOT NULL,
+    `age` decimal(3, 0) NOT NULL,
     `address` varchar(100) NOT NULL,
     `contact` varchar(11) NOT NULL,
+    `balance` decimal(8, 0) NOT NULL,
     -- `profile_image` blob NOT NULL,
     -- `username` varchar(30) NOT NULL,
     `password` varchar(30) NOT NULL,    -- plaintext / ciphertext
@@ -59,7 +66,7 @@ create table `customer` (
 -- create owner table
 create table `owner` (
     `owner_id` int NOT NULL AUTO_INCREMENT,
-    `owner_name` varchar(50) NOT NULL,
+    `name` varchar(50) NOT NULL,
     `address` varchar(100) NOT NULL,
     `contact` varchar(11) NOT NULL,
     -- `profile_image` blob NOT NULL,
@@ -90,9 +97,20 @@ create table `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 
+-- ------------------------------------------------------------------
+-- tables for OLAP
+-- (for analysis purpose only, no need to be updated)
+-- ------------------------------------------------------------------
 
--- tables for OLAP (for analysis purpose only, no need to be updated)
--- TODO...
+-- create car_rental_demand table
+create table `car_rental_demand` (
+    `date` date NOT NULL,
+    `hour` decimal(2, 0) NOT NULL,
+    `demand` decimal(5, 0) NOT NULL,
+
+    primary key (`date`, `hour`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
