@@ -14,7 +14,7 @@ USE `CarRental` ;
 -- create car table
 create table `car` (
     `car_id` int NOT NULL AUTO_INCREMENT,
-    `description` varchar(100) NOT NULL,
+    `description` varchar(400) NOT NULL,
     `category` varchar(25) NOT NULL,    -- TODO: make it a foreign key?
     `brand` varchar(25) NOT NULL,       -- TODO: make it a foreign key?
     `color` varchar(15) NOT NULL,
@@ -33,7 +33,7 @@ create table `car` (
 -- create review table
 create table `review` (
     `review_id` int NOT NULL AUTO_INCREMENT,
-    `review` varchar(100) NOT NULL,
+    `review` varchar(500) NOT NULL,
     `rate` decimal(1, 0) NOT NULL,
     `date` date NOT NULL,
     `renter_trips_taken` decimal(4, 0) NOT NULL,
@@ -52,8 +52,8 @@ create table `customer` (
     `name` varchar(50) NOT NULL,
     `gender` varchar(10) NOT NULL,
     `age` decimal(3, 0) NOT NULL,
-    `address` varchar(100) NOT NULL,
-    `contact` varchar(11) NOT NULL,
+    `address` varchar(200) NOT NULL,
+    `contact` varchar(100) NOT NULL,
     `balance` decimal(8, 0) NOT NULL,
     -- `profile_image` blob NOT NULL,
     -- `username` varchar(30) NOT NULL,
@@ -68,7 +68,7 @@ create table `owner` (
     `owner_id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(50) NOT NULL,
     `address` varchar(100) NOT NULL,
-    `contact` varchar(11) NOT NULL,
+    `contact` varchar(100) NOT NULL,
     -- `profile_image` blob NOT NULL,
     -- `username` varchar(30) NOT NULL,
     `password` varchar(30) NOT NULL,
@@ -81,17 +81,18 @@ create table `owner` (
 -- correspond to `rental` table in ref
 create table `order` (
     `order_id` int NOT NULL AUTO_INCREMENT,
+    `cost` float NOT NULL,
     `order_date` date NOT NULL,
     -- `rental_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `begin_date` date NOT NULL,
     `return_date` date NOT NULL,
-    `owner_id` int NOT NULL,
+    -- `owner_id` int NOT NULL,
     `car_id` int NOT NULL,
     `customer_id` int NOT NULL,
     -- `rental_status` decimal(2, 0) NOT NULL,
 
     primary key (`order_id`),
-    foreign key (`owner_id`) references `owner`(`owner_id`),
+    -- foreign key (`owner_id`) references `owner`(`owner_id`),
     foreign key (`car_id`) references `car`(`car_id`),
     foreign key (`customer_id`) references `customer`(`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
