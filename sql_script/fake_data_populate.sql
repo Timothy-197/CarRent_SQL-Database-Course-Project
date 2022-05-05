@@ -6,16 +6,16 @@ USE `CarRental`;
 
 -- --------------------------------------------------------
 
-insert into `customer` (`name`, `gender`, `age`, `address`, `contact`, `balance`, `password`) values
-('Gary CHEN', 'male', '21', 'LGU Shaw', 'lgu@cuhk.edu.cn', '1000', 'abc123'),
-('Yiyan HU', 'male', '20', 'LGU Shaw Building C', 'lgu@gmail.com', '2000', 'abcd1234'),
-('Hao ZHU', 'male', '22', 'CUHK(SZ), Shenzhen, Guangdong Province', 'lgu@outlook.com', '1500', 'abcdefg');
+insert into `customer` (`name`, `gender`, `address`, `email`, `balance`, `password`) values
+('Gary CHEN', 'male', 'LGU Shaw', 'lgu@cuhk.edu.cn', '1000', 'abc123'),
+('Yiyan HU', 'male', 'LGU Shaw Building C', 'lgu@gmail.com', '2000', 'abcd1234'),
+('Hao ZHU', 'male', 'CUHK(SZ), Shenzhen, Guangdong Province', 'lgu@outlook.com', '1500', 'abcdefg');
 
 -- --------------------------------------------------------
 
-insert into `owner` (`name`, `address`, `contact`, `password`) values
-('Qiaohui LIANG', 'CUHK(SZ), Longxiangdadao', 'lgu@hotmail.com', '12345678'),
-('Hongmeng YANG', 'LGU at Guangdong Shenzhen', 'lgu@163.com', 'abcd9876');
+insert into `owner` (`name`, `gender`, `address`, `email`, `password`) values
+('Qiaohui LIANG', 'female', 'CUHK(SZ), Longxiangdadao', 'lgu@hotmail.com', '12345678'),
+('Hongmeng YANG', 'male', 'LGU at Guangdong Shenzhen', 'lgu@163.com', 'abcd9876');
 
 -- --------------------------------------------------------
 
