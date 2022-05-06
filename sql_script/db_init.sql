@@ -21,7 +21,7 @@ create table `car` (
     `capacity` decimal(3, 0) NOT NULL,
     `fuel_type` varchar(25) NOT NULL,
     `image` varchar(200),              -- `image` blob NOT NULL,
-    `rate` float,
+    `rate` float DEFAULT 5,
     `rent_price` float NOT NULL,
     `valid` bit NOT NULL DEFAULT 1,     -- 1: valid; 0: invalid (when owner "delete: a car, the car becomes invalid)
     `owner_id` int NOT NULL,

@@ -1,0 +1,2 @@
+insert into `car` (`description`, `category`, `brand`, `color`, `capacity`, `fuel_type`, `image`, `rent_price`, `owner_id`) values
+('This is a very nice car!', 'suv', 'Tesla', 'blue', '4', 'ELECTRIC', NULL, '90', '1');
