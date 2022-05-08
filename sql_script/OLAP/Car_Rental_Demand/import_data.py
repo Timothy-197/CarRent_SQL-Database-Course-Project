@@ -9,7 +9,7 @@ conn = pymysql.connect(
     db='CarRental')
 
 
-with open('test_import.csv') as csv_file:
+with open('../../../data_mining/test_import.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     headers = next(csv_reader)
 
