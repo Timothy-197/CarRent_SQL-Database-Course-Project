@@ -1,0 +1,150 @@
+{% extends 'sys_Renter/base.html' %}
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    History
+    <small>Orders</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> HOME</a></li>
+    <li class="active">History Orders</li>
+  </ol>
+  <form action="" method="POST">
+    {% csrf_token %}
+  <select name = "order_time" style="width: 15%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  outline: none;">
+    <option value="none" selected disabled hidden>{{ sel_time }}</option>
+
+    <option value="All">Order Time: All</option>
+
+    <option value="week">Within a Week</option>
+  
+    <option value="month">Within a Month</option>
+  
+    <option value="year">Within a Year</option>
+
+  </select>
+  <select name="returned" style="width: 15%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  outline: none;">
+    <option value="none" selected disabled hidden>{{ sel_returned }}</option>
+
+    <option value="All">Returned: All</option>
+
+    <option value="yes">Yes</option>
+  
+    <option value="no">No</option>
+  
+  </select>
+  <input type="submit" value="Filter"  style="width: 15%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+  padding-left: 15px;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  outline: none;">
+</form>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">List of Orders</h3>
+
+          <div class="box-tools" style="margin-right: 3%;">
+            <form action="{% url 'sys_Customer:nft_index' 1 %}" method="get">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search_nft" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tr>
+              <th>No.</th>
+              <th>Order ID</th>
+              <th>Car Image</th>
+              <th>Car Description</th>
+              <th>Order Date</th>
+              <th>Return Date</th>
+              <th>Already returned or not?</th>
+              <th>Operation</th>
+            </tr>
+            
+            {% for order_merge_entry in order_merge_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ order_merge_entry.order.order_id}}</td>
+              <td><img src="/media/{{  order_merge_entry.car.image}}" width="90"/></td>
+              <td><p style="max-width: 150px;overflow: hidden; text-overflow:ellipsis;">{{ order_merge_entry.car.description }}</p></td>             
+              <td>{{ order_merge_entry.order.order_date}}</td>
+              <td>{{ order_merge_entry.order.return_date}}</td>
+              {% if order_merge_entry.returned == 1 %}
+                <td>YES</td>
+              {% else %}
+                <td>NO</td>
+                {% if order_merge_entry.cross_ddl == 0 %}
+                  <td>
+                    <a  role="button" href="{% url "sys_Customer:return_car" order_merge_entry.order.order_id %}" class="btn btn-success btn-xs">
+                      <span class="fa fa-check-square-o" aria-hidden="true"></span> Return (on time)</a>
+                  </td>
+                {% else %}
+                  <td>
+                  <a role="button" href="{% url "sys_Customer:return_car" order_merge_entry.order.order_id %}" class="btn btn-danger btn-xs">
+                        <span class="fa fa-trash-o" aria-hidden="true"></span> Return (Already Late)</a>
+                  </td>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <a role="button" href="{% url "sys_Purchase:index" 1 %}" class="btn btn-primary">
+                  <span class="fa fa-shopping-cart" aria-hidden="true"></span> &nbsp; Rent More</a>
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a href="{% url 'sys_Customer:nft_index' pIndex|add:-1 %}?{{mywhere|join:'&'}}">&laquo;</a></li>
+            {% for p in plist%}
+              <li {% if p == pIndex %} class="active" {% endif %}><a href="{% url 'sys_Customer:nft_index' p %}?{{mywhere|join:'&'}}">{{p}}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'sys_Customer:nft_index' pIndex|add:1 %}?{{mywhere|join:'&'}}">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
+<!-- /.content -->
+{% endblock %}

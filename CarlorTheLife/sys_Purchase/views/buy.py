@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from sys_Purchase.models import  Car
-from sys_ColorTile.models import  Order
+from sys_Customer.models import  Order
 from sys_RegLog.models import Customer
 
 from datetime import datetime,timedelta

@@ -43,10 +43,10 @@ INSTALLED_APPS = [
 
     # myAPPs (5 systems)
     'sys_RegLog',
-    'sys_ClockIn',
-    'sys_ColorTile',
+    'sys_Renter',
+    'sys_Customer',
     'sys_Purchase',
-    'sys_Sharing',
+    # 'sys_Sharing',
     #'myshop'
     
 ]
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'sys_ClockIn.ClockInMiddleWare.ClockInMiddleWare' # 注册自定义中间件
+    'sys_Renter.ClockInMiddleWare.ClockInMiddleWare' # 注册自定义中间件
 ]
 
 ROOT_URLCONF = 'ColorTheLife.urls'
@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CarRental3', # name of database
         'USER': 'root',
-        'PASSWORD': 'yqr20010828', # based on ThomasXu's settings
+        'PASSWORD': '000000', # based on ThomasXu's settings
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }

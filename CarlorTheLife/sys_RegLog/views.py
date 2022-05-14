@@ -32,7 +32,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 
-#from sys_ClockIn.models import User_Goals
+#from sys_Renter.models import User_Goals
 from django.contrib.auth.models import User
 from .forms import UserFindPwdEmailForm
 
@@ -114,17 +114,17 @@ def Login(request):
         password = request.POST['password']
         user1 = authenticate(request, username = username, password = password)
 
-        # If the user log in successfully, then it will go to its profile page, implemented in sys_ClockIn
+        # If the user log in successfully, then it will go to its profile page, implemented in sys_Renter
         if user1 is not None:
             form = login(request, user1)
             messages.success(request, f' Welcome {username} !!')
-            #return redirect('sys_ClockIn:profile',goal_op=0)
+            #return redirect('sys_Renter:profile',goal_op=0)
             #user_entry = (User.objects.get(username = username)) # 理论上只有一个User
             #request.session['adminuser'] = user_entry.toDict()
             if user1.profile.user_is_customer == 1:
                 return redirect('sys_Purchase:index', showidx=1)
             else:
-                return redirect('sys_ClockIn:goal_index', pIndex=1,status_required = 0)
+                return redirect('sys_Renter:goal_index', pIndex=1,status_required = 0)
         else:
             messages.info(request, f'account does not exit plz sign in')
     #form = AuthenticationForm()

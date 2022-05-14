@@ -17,7 +17,7 @@ urlpatterns = [
     #path('', views.hello),
     path('', views.index, name ='index'),
     path('login/', user_view.Login, name ='login'),
-    path('logout/', auth.LogoutView.as_view(template_name ='sys_RegLog/index.html'), name ='logout'),
+    path('logout/', auth.LogoutView.as_view(template_name ='sys_RegLog/login.html'), name ='logout'),
     path('register/', user_view.register, name ='register'),
     path('activate/<slug:uidb64>/<slug:token>/', user_view.activate, name ='activate'),
     path('forget_pwd/',user_view.forget_pwd,name="forget_pwd"),

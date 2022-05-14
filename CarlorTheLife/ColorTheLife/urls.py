@@ -31,17 +31,17 @@ urlpatterns = [
 
     # 5 systems
     #path('reglog/', include("sys_RegLog.urls")),
-    #path('clockin/', include("sys_ClockIn.urls")),
-    #path('colortile/', include("sys_ColorTile.urls")),
+    #path('clockin/', include("sys_Renter.urls")),
+    #path('colortile/', include("sys_Customer.urls")),
     #path('purchase/', include("sys_Purchase.urls")),
     #path('sharing/', include("sys_Sharing.urls")),
 
 
     path('reglog/', include(('sys_RegLog.urls','sys_RegLog'),namespace="sys_RegLog")),
-    #path('clockin/', include(('sys_ClockIn.urls','sys_ClockIn'),namespace="sys_ClockIn")),
-    path('clockin/', include(('sys_ClockIn.urls','sys_ClockIn'),namespace="sys_ClockIn")),
+    #path('clockin/', include(('sys_Renter.urls','sys_Renter'),namespace="sys_Renter")),
+    path('clockin/', include(('sys_Renter.urls','sys_Renter'),namespace="sys_Renter")),
     path('purchase/', include(('sys_Purchase.urls','sys_Purchase'),namespace="sys_Purchase")),
-    path('colortile/', include(('sys_ColorTile.urls','sys_ColorTile'),namespace="sys_ColorTile"))
+    path('colortile/', include(('sys_Customer.urls','sys_Customer'),namespace="sys_Customer"))
 ]
 
 if settings.DEBUG: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

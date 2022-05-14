@@ -1,0 +1,341 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Color the Life</title>
+  <!-- 支持响应式布局 -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="{% static 'sys_Renter/bower_components/bootstrap/dist/css/bootstrap.min.css'%}">
+  <!-- 象形字体 -->
+  <link rel="stylesheet" href="{% static 'sys_Renter/bower_components/font-awesome/css/font-awesome.min.css'%}">
+  <!-- 图标 -->
+  <link rel="stylesheet" href="{% static 'sys_Renter/bower_components/Ionicons/css/ionicons.min.css'%}">
+  <!-- 主题风格样式 -->
+  <link rel="stylesheet" href="{% static 'sys_Renter/dist/css/AdminLTE.min.css'%}">
+  <!-- AdminLTE 皮肤.这里选择的是skin-blue样式，我们还可以有其他皮肤可以选择. -->
+  <link rel="stylesheet" href="{% static 'sys_Renter/dist/css/skins/skin-blue.min.css'%}">
+  <!-- 兼容IE9以下浏览器 -->
+  <!--[if lt IE 9]>
+  <script src="local/js/html5shiv.min.js"></script>
+  <script src="local/js/respond.min.js"></script>
+  <![endif]-->
+  <!-- Google Font -->
+  <link rel="stylesheet" href="{% static 'sys_Renter/local/css/google_fonts.css'%}">
+  <link rel="stylesheet" href="{% static 'sys_Renter/style5.css'%}">
+  <link id="pagestyle" href="/static/assets/css/soft-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+
+
+  <!-- only for profile
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  -->
+
+  <!-- message here -->
+
+  {% if messages %}
+  {% for message in messages %}
+
+  <script>
+    alert("{{ message }}");
+  </script>
+
+  {% endfor %}
+  {% endif %}
+  
+  {% block extracss %}
+  {% endblock %}
+  
+  {% block content %}
+  {% endblock %}
+  <!--
+
+  <style>
+    *{
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 600;
+    }
+  </style>
+  -->  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header 主体页头 -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="{% url 'sys_RegLog:logout' %}" class="logo" style="background-color: black;">
+      <!-- 侧栏迷你徽标 mini 50x50 pixels -->
+      <span class="logo-mini"><b><span style="color: aqua;">C</span></b></span>
+      <!-- 常规状态标志和移动设备标志 -->
+      <span class="logo-lg"><b><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #ffae00;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span></b></span>
+    </a>
+
+    <!-- Header Navbar 首部导航栏 -->
+    <nav class="navbar navbar-static-top" role="navigation" style="background-color:black">
+      <!-- Sidebar toggle button 侧边栏切换按钮 -->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Navigation Bar</span>
+      </a>
+      <!-- 右栏菜单 -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Developer List -->
+          <li class="dropdown messages-menu">
+            <!-- Menu toggle button 菜单切换按钮 -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-at" style="font-size: 17px;"></i>
+              <span class="label label-success">3</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Developers</li>
+              <li>
+                <!-- Developer List -->
+                <ul class="menu">
+                  <li><!-- start message 信息开始 -->
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image 使用图片 -->
+                        <img src="/static/imgsrc_Animal/wolf.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Xu Xuanyang
+                        <small><i class="fa fa-user"></i>  ThomasXu-17</small>
+                      </h4>
+                      <!-- The e-mail -->
+                      <p><i class="fa fa-envelope"></i>  119010361@link.cuhk.edu.cn</p>
+                    </a>
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image 使用图片 -->
+                        <img src="/static/imgsrc_Animal/sheep.jpeg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Yang HongMeng
+                        <small><i class="fa fa-user"></i>  WuliMengmeng</small>
+                      </h4>
+                      <!-- The e-mail -->
+                      <p><i class="fa fa-envelope"></i>  119010378@link.cuhk.edu.cn</p>
+                    </a>
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image 使用图片 -->
+                        <img src="/static/imgsrc_Animal/bear.jpeg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Zhu Hao
+                        <small><i class="fa fa-user"></i>  1213JasonZ</small>
+                      </h4>
+                      <!-- The e-mail -->
+                      <p><i class="fa fa-envelope"></i>  119010488@link.cuhk.edu.cn</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                </ul>
+                <!-- /.menu -->
+              </li>
+              <li class="footer"><a href="#">Thank you for your support!</a></li>
+            </ul>
+          </li>
+          <!-- /.Developer List -->
+
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu" >
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="/media/{{request.user.profile.userIcon_url}}" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">{{request.user.username}}, hi!</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              
+              <li class="user-header" style="background-color: rgb(43, 42, 42);">
+                <img src="/media/{{request.user.profile.userIcon_url}}" class="img-circle" alt="User Image">
+                <!-- <span class="before"></span> -->
+                <!-- <span class="after1" style="--x:0"></span> -->
+                <span class="after1" style="--x:1"></span>
+                <span class="after1" style="--x:2"></span>
+                <!-- <span class="after1" style="--x:3"></span> -->
+                <p>
+                  {{request.user.username}}
+                  <small>{{request.user.email}}</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="{% url 'sys_RegLog:reset_pwd' %}" class="btn btn-default btn-flat">Reset Password</a>
+                </div>
+                <div class="pull-right">
+                  <a href="{% url 'sys_RegLog:logout' %}" class="btn btn-default btn-flat">Log Out</a>
+                </div>
+                <!--
+                  <form method="POST" action ="{% url 'sys_RegLog:update_profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="pull-right">
+                      <label for="image_uploads">Choose Your Prifile Photo (PNG, JPG)</label>
+                      <input type="file" name="userIcon_url" class="btn btn-default btn-flat"  accept=".jpg, .jpeg, .png" multiple>
+                      <button class="btn btn-default btn-flat">Submit</button>
+                    </div>
+                  </form>
+                -->
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 左侧柱。包含徽标和边栏 -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar" >
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel" style="height: 70px;">
+        <div class="pull-left image">
+          <img src="/media/{{request.user.profile.userIcon_url}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p style="font-size: 13px;"> {{request.user.username}}</p>
+          <!-- Status -->
+          <i class="fa fa-circle text-success"></i> ONLINE
+        </div>
+      </div>
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Navigation Bar</li>
+        <!-- Navigation Bar -->
+        {% with url_name=request.resolver_match.view_name %}
+        <li class="dropdown {% if url_name == 'sys_Renter:profile_index' %}active{% endif %}">
+          <a href="{% url 'sys_Renter:profile_index' %}"><i class="fa fa-user"></i> <span>PROFILE</span></a>
+        </li>
+        {% if request.user.profile.user_is_customer == 1 %}
+        <li class="treeview">
+          <a href="category.html"><i class="fa fa-paw" ></i> <span>Cars</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" >
+            <li class="dropdown {% if url_name == 'sys_Customer:nft_index' %}active{% endif %}">
+              <a href="{% url 'sys_Customer:nft_index' 1 %}"><i class="fa fa-btc" ></i> <span>Car Atlas</span></a>
+            </li>
+            <li class="dropdown {% if url_name == 'sys_Purchase:index' %}active{% endif %}">
+              <a href="{% url 'sys_Purchase:index' 1 %}"> <i class="fa fa-shopping-cart"></i> Car Shop</a>
+            </li>
+          </ul>
+        </li>        
+        {% else %}
+        <li class="dropdown {% if url_name == 'sys_Renter:goal_index' %}active{% endif %}">
+          <a href="{% url 'sys_Renter:goal_index' 1 0 %}"><i class="fa fa-pencil-square-o"></i> <span>Rented Car</span></a>
+        </li>        
+        {% endif %}
+        <li class="dropdown {% if url_name == 'index2' %}active{% endif %}">
+          <a href="{% url 'sys_RegLog:update_profile' %}"><i class="fa fa-gear"></i> <span>SETTINGS</span></a>
+        </li>
+        {% endwith %}
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    {% block main_body %}
+    {% endblock %}
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      <!--餐饮管理平台-->
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2022 <a href="https://github.com/ThomasXU-17/CSC4001_Project"><span style="color: slateblue;">CUHKSZ_CSC3170</span></a></strong>
+  </footer>
+
+  <!-- 添加侧栏的背景。必须放置此处紧接在控制侧边栏之后 -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- edu-model提示框模板 -->
+<div id="edu-alert" class="modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+      </div>
+      <div class="modal-body small">
+        <p>[Message]</p>
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+        <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edu-model-end -->
+
+<!-- REQUIRED JS SCRIPTS -->
+  
+<!-- jQuery 3 -->
+<script src="{% static 'sys_Renter/bower_components/jquery/dist/jquery.min.js'%}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'sys_Renter/bower_components/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'sys_Renter/dist/js/adminlte.min.js'%}"></script>
+
+<script src="{% static 'sys_Renter/dist/js/edu-modal-alert-confirm.js'%}"></script>
+
+<!-- 此处可以添加SimLoopl和FastClick插件，用于增强用户体验。 -->
+
+<script>
+  $('.sidebar-menu li:not(.treeview) > a').on('click', function(){
+      var $parent = $(this).addClass('active');
+      $parent.siblings('.treeview.active').find('> a').trigger('click');
+      $parent.siblings().removeClass('active').find('li').removeClass('active');
+  });
+
+  $(window).on('load', function(){
+      $('.sidebar-menu a').each(function(){
+          var cur = window.location.href;
+          var url = this.href;
+          if(cur.match(url)){
+              $(this).addClass('active')
+                      .closest('.treeview-menu').addClass('.menu-open')
+                      .closest('.treeview').addClass('active');
+          }
+      });
+  });
+</script>
+
+<script type="text/javascript">
+	/*
+    Modal.confirm({
+        msg: "确定要删除吗？",
+        title: ' 信息提示',
+        btnok: '确定',
+        btncl:'取消'
+      }).on(function (e){
+        if(e){
+          Modal.alert({msg: "成功删除",title: ' 信息提示',btnok: '确定',btncl:'取消'});
+        }
+      });
+  */
+</script>
+</body>
+</html>

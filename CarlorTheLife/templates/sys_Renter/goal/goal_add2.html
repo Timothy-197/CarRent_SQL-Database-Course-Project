@@ -1,0 +1,78 @@
+{% extends 'sys_Renter/base.html' %}
+
+{% block extracss %}
+  {% load crispy_forms_tags %}
+  <link rel="stylesheet" href="/static/sys_Renter/style1.css">
+{% endblock %}
+
+
+{% block main_body %}
+<section class="add_goal">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-xl-6">
+          <form method="POST" enctype="multipart/form-data" class="add_goal" >
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom" style="text-align: center; color: white; font-size: 20px; font-weight: 600;">Upload Car</legend>
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Description</p>
+                      <input type="text" value="" name="description">
+                    </div>
+                    <div class="col-6">
+                      <p>Category</p>
+                      <input type="text" value="" name="category">
+                    </div>
+                  </div>
+                  <p>Brand</p>
+                  <input type="text" value="" name="brand">
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Color</p>
+                      <input type="text" value="" name="color">
+                    </div>
+                    <div class="col-6">
+                      <p>Capacityy</p>
+                      <input type="text" value="" name="capacity">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Fuel_Type</p>
+                      <input type="text" value="" name="fuel_type">
+                    </div>
+                    <div class="col-6">
+                      <p>Rent_Price</p>
+                      <input type="text" value="" name="rent_price">
+                    </div>
+                  </div>  
+                  </br>
+                  <input type="file" id="real-file" hidden="hidden" name="image">
+                  </br>
+                  <button type="button" id="cus-button" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; Upload You Car Image</button>
+                  <span id="cus-filename">No Car Image Yet</span>
+                  <!-- {{ user_form.as_p }} -->
+                  <!-- {{ profile_form.as_p }} -->
+              </fieldset>
+              <button type="submit" class="add_goal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp; Update</button>
+          </form>
+      </div>
+  </div>
+</section>
+<script type="text/javascript">
+  const realFileBtn = document.getElementById("real-file");
+  const cusBtn = document.getElementById("cus-button");
+  const cusFileBtn = document.getElementById("cus-filename");
+
+  cusBtn.addEventListener("click",function(){
+      realFileBtn.click();
+  });
+  realFileBtn.addEventListener("change",function(){
+      if(realFileBtn.value){
+          cusFileBtn.innerHTML = realFileBtn.value.match( /[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+      }
+      else{
+          cusFileBtn.innerHTML = "No Head Portrait Yet";
+      }
+  })
+</script>
+{% endblock %}

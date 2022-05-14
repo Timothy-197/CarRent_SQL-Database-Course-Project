@@ -49,7 +49,7 @@
     
     {% if user.is_authenticated %}
     <li class="right"><a href="{% url "sys_RegLog:logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
-    <li class="right"><a href="{% url "sys_ClockIn:add_goal" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Add Goal</a></li>
+    <li class="right"><a href="{% url "sys_Renter:add_goal" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Add Goal</a></li>
     <li class="right"><a href="{% url "sys_RegLog:reset_pwd" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Change Password</a></li>
     {% else %}
     <li class="right"><a  class="active" href="{% url "sys_RegLog:register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a></li>

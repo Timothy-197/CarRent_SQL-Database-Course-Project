@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from sys_RegLog.models import UserProfile
-#from sys_ClockIn.models import User_Goals
+#from sys_Renter.models import User_Goals
  
 from django import forms
 from django.core.files.images import get_image_dimensions
