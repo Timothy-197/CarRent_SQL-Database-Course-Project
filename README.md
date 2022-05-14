@@ -1,37 +1,35 @@
-*******建立数据库步骤********
-第一步
-新建一个数据库，名字为CarRental3
+Please follow follow the procedures below to run our project.
+(The web page programs are in the "CarlorTheLife" folder)
+(The sql scripts are in the "sql_script" folder)
+(The data mining programs are in the "data_mining" folder)
 
-第二步 （在ColorTheLife文件夹下）
+*******Steps to build the database********
+Step 1
+Create a databse named with "CarRental3"
+
+Step 2 (In the file "/CarlorTheLife/ColorTheLife/settings.py")
+In line 104, change the password of mysql database to yours
+
+Step 3 （cd to the folder "CarlorTheLife" and run these commands）
 python3 manage.py makemigrations sys_RegLog
 python3 manage.py makemigrations sys_Purchase
-python3 manage.py makemigrations sys_ColorTile
+python3 manage.py makemigrations sys_Customer
 python3 manage.py migrate
 
-第三步 （在sql_script文件夹下）
-跑 db_init.sql
+Step 4 （cd to the folder sql_script）
+run db_init.sql
+run fake_data_populate.sql
 
+*******Run the Web********
 After setting the database of the project, you can start to execute the program.You can execute the following command in your terminal:
 
 python3 manage.py runserver 9090
 
+(You should first intall the Django framework)
+(And if you encounter an error saying that a package is not installed, please use pip or other methods to install it)
 Then you need to go to a web server type the following web address:
 
-http://127.0.0.1:9090/reglog/
+http://127.0.0.1:9090/reglog/login/
 
-Finally you can start to use the web !!!
-
-*****前端文件位置（都在templates里）：******
-
-(1)关于注册登录的还是在 sys_RegLog
-
-(2) base.html 在sys_ClockIn
-
-(3) 商家已经上架车的信息：sys_ClockIn/goal/index2.html
-    商家upload car: sys_ClockIn/goal/goal_add2.html
-
-(4) 用户订单信息： sys_ColorTile/nft/index.html
-    租车商城： sys_Purchase/shop/index.html
-
-(5) 单独的那个profile页面： sys_ClockIn/profile/index.html
-    更新profie: sys_RegLog/profile2.html
+Finally you can start to use the web !!! 
+You should first register an account and then login to enjoy our website!
