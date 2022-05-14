@@ -11,9 +11,15 @@ python3 manage.py migrate
 第三步 （在sql_script文件夹下）
 跑 db_init.sql
 
+After setting the database of the project, you can start to execute the program.You can execute the following command in your terminal:
 
+python3 manage.py runserver 9090
 
+Then you need to go to a web server type the following web address:
 
+http://127.0.0.1:9090/reglog/
+
+Finally you can start to use the web !!!
 
 *****前端文件位置（都在templates里）：******
 
