@@ -3,6 +3,9 @@ Please follow follow the procedures below to run our project.
 (The sql scripts are in the "sql_script" folder)
 (The data mining programs are in the "data_mining" folder)
 
+*******Intstall Django Framework********
+You should first intall the Django framework
+
 *******Steps to build the database********
 Step 1
 Create a databse named with "CarRental3"
@@ -25,8 +28,7 @@ After setting the database of the project, you can start to execute the program.
 
 python3 manage.py runserver 9090
 
-(You should first intall the Django framework)
-(And if you encounter an error saying that a package is not installed, please use pip or other methods to install it)
+(If you encounter an error saying that a package is not installed, please use pip or other methods to install it)
 Then you need to go to a web server type the following web address:
 
 http://127.0.0.1:9090/reglog/login/
