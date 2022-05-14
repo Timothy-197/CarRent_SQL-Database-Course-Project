@@ -2,9 +2,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- DROP SCHEMA IF EXISTS `CarRental` ;
--- CREATE SCHEMA IF NOT EXISTS `CarRental` DEFAULT CHARACTER SET UTF8MB4 ;
-USE `CarRental3` ;
+DROP SCHEMA IF EXISTS `CarRental` ;
+CREATE SCHEMA IF NOT EXISTS `CarRental` DEFAULT CHARACTER SET UTF8MB4 ;
+USE `CarRental` ;
 
 -- ------------------------------------------------------------------
 -- the following codes define the tables in this Car Rental System
@@ -12,7 +12,6 @@ USE `CarRental3` ;
 -- ------------------------------------------------------------------
 
 -- create car table
-DROP TABLE  `car`;
 create table `car` (
     `car_id` int NOT NULL AUTO_INCREMENT,
     `description` varchar(400) NOT NULL,
@@ -24,7 +23,6 @@ create table `car` (
     `image` varchar(200),              -- `image` blob NOT NULL,
     `rate` float DEFAULT 5,
     `rent_price` float NOT NULL,
-		`returned` bit NOT NULL DEFAULT 1,
     `valid` bit NOT NULL DEFAULT 1,     -- 1: valid; 0: invalid (when owner "delete: a car, the car becomes invalid)
     `owner_id` int NOT NULL,
 
@@ -34,7 +32,6 @@ create table `car` (
 
 
 -- create review table
--- DROP TABLE  `review`;
 create table `review` (
     `review_id` int NOT NULL AUTO_INCREMENT,
     `review` varchar(500) NOT NULL,
@@ -51,10 +48,8 @@ create table `review` (
 
 
 -- create customer table
-DROP TABLE  `customer`;
 create table `customer` (
     `customer_id` int NOT NULL AUTO_INCREMENT,
-		`user_id` int NOT NULL,
     `name` varchar(50) NOT NULL,
     `gender` varchar(10) NOT NULL,
     -- `age` decimal(3, 0) NOT NULL,
@@ -70,10 +65,8 @@ create table `customer` (
 
 
 -- create owner table
-DROP TABLE  `owner`;
 create table `owner` (
     `owner_id` int NOT NULL AUTO_INCREMENT,
-		`user_id` int NOT NULL,
     `name` varchar(50) NOT NULL,
     `gender` varchar(10) NOT NULL,
     -- `age` decimal(3, 0) NOT NULL,
@@ -89,7 +82,6 @@ create table `owner` (
 
 -- create order table
 -- correspond to `rental` table in ref
-DROP TABLE  `order`;
 create table `order` (
     `order_id` int NOT NULL AUTO_INCREMENT,
     `cost` float NOT NULL,
@@ -116,7 +108,6 @@ create table `order` (
 -- ------------------------------------------------------------------
 
 -- create car_rental_demand table
--- DROP TABLE  `car_rental_demand`;
 create table `car_rental_demand` (
     `date` date NOT NULL,
     `hour` decimal(2, 0) NOT NULL,
@@ -125,12 +116,7 @@ create table `car_rental_demand` (
     primary key (`date`, `hour`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
-DROP TABLE  `image`;
-create table `image` (
-    `image_id` int NOT NULL AUTO_INCREMENT,
-    `image` varchar(200),  
-    primary key (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
