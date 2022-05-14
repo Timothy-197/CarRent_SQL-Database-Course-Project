@@ -1,0 +1,105 @@
+.before{
+    position:fixed;
+    content: "";
+    z-index: 2;
+    width: 450px;
+    height: 450PX;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%,-80%);
+    background-color: #ffe538;
+    background-image: linear-gradient(147deg,#ffe538 0%, #ff2525 74%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
+    animation: pulse 1s infinite;
+}
+.before1{
+    position: absolute;
+    z-index: 1;
+    width: 450px;
+    height: 450PX;
+    top: 50%;
+    left: 50%;
+    transform: translate(-10%,-80%);
+    background-color: #00f1f5;
+    background-image: linear-gradient(to right bottom, #900000, #bc00c6, #00a4be, #ce8d00, #ffff00);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
+    animation: pulse 1s infinite;
+}
+
+.after{
+    position: fixed;
+    content: "";
+    z-index: 2;
+    width: 300px;
+    height: 300PX;
+    top: 50%;
+    left: 50%;
+    transform: translate(10%,20%);
+    background-color: #fa8bff;
+    background-image: linear-gradient(45deg,#D16BA5 0%,#2bd2ff 52%, #2bff88 90%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
+    animation: pulse 1.5s infinite;
+}
+
+.after1{
+    position: fixed;
+    z-index: 2;
+    background-image: linear-gradient(to right top , #f24caa, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
+    filter: hue-rotate(calc(var(--x) * 60deg));
+    animation: animate 3s linear infinite;
+    animation-delay: calc(var(--x) * -2s);
+}
+@keyframes pulse{
+    50%{
+        box-shadow: 0 0 0 50px rgba(255,255,255,0);
+    }
+    100%{
+        box-shadow: 0 0 0 50px rgba(255,255,255,0);
+    }
+
+}
+.after1:nth-child(3) {
+    top: 80%;
+    right: 10%;
+    width: 80px;
+    height: 80PX;
+}
+
+.after1:nth-child(4) {
+    top: 30%;
+    right: 20%;
+    width: 100px;
+    height: 100PX;
+}
+.after1:nth-child(5) {
+    top: 30%;
+    right: 85%;
+    width: 120px;
+    height: 120PX;
+}
+.after1:nth-child(6) {
+    top: 70%;
+    right: 60%;
+    width: 120px;
+    height: 120PX;
+}
+
+@keyframes animate{
+    50%{
+        transform: translateY(-60px);
+        box-shadow: 0 0 0 50px rgba(255,255,255,0);
+    }
+    100%{
+        transform: translateY(60px);
+        box-shadow: 0 0 0 50px rgba(255,255,255,0);
+    }
+    0%{
+        transform: translateY(60px);
+    }
+
+}

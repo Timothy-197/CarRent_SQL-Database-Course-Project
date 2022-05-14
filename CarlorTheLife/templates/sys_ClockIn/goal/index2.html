@@ -1,0 +1,96 @@
+{% extends 'sys_ClockIn/base.html' %}
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Rented
+    <small>Car</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> HOME</a></li>
+    <li class="active">Your Rented Car</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">List of Rented Cars</h3>
+
+          <div class="box-tools" style="margin-right: 3%;">
+            <form action="{% url 'sys_ColorTile:nft_index' 1 %}" method="get">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search_nft" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tr>
+              <th>No.</th>
+              <th>Car ID</th>
+              <th>Car Image</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>brand</th>
+              <th>color</th>
+              <th>capacity</th>
+              <th>fuel_type</th>
+              <th>rent_price</th>
+            </tr>
+            
+            {% for owner_car_merge_entry in owner_car_merge_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ owner_car_merge_entry.car.car_id}}</td>
+              <td><img src="/media/{{  owner_car_merge_entry.car.image}}" width="90"/></td>
+              <td><p style="max-width: 150px;overflow: hidden; text-overflow:ellipsis;">{{ owner_car_merge_entry.car.description }}</p></td>             
+              <td>{{ owner_car_merge_entry.car.category }}</td>
+              <td>{{ owner_car_merge_entry.car.brand }}</td>
+              <td>{{ owner_car_merge_entry.car.color }}</td>
+              <td>{{ owner_car_merge_entry.car.capacity }}</td>
+              <td>{{ owner_car_merge_entry.car.fuel_type }}</td>
+              <td>{{ owner_car_merge_entry.car.rent_price }}</td>
+              <td>
+                {% if owner_car_merge_entry.returned == 1 %}
+                <a role="button" href="{% url "sys_ClockIn:goal_del" owner_car_merge_entry.car.car_id %}" class="btn btn-danger btn-xs">
+                      <span class="fa fa-trash-o" aria-hidden="true"></span> Delete</a>
+                {% else %}
+                <a role="button" href="#" class="btn btn-danger btn-xs">
+                  <span class="fa fa-trash-o" color=grey aria-hidden="true"></span> Currently Rented</a>     
+                {% endif %}          
+              </td>
+            {% endfor %}
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <a role="button" href="{% url "sys_ClockIn:goal_add" %}" class="btn btn-primary">
+                <span class="fa fa-plus-square-o" aria-hidden="true"></span>&nbsp; Upload New Car </a>
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a href="{% url 'sys_ClockIn:goal_index' pIndex|add:-1 0 %}?{{mywhere|join:'&'}}">&laquo;</a></li>
+            {% for p in plist%}
+              <li {% if p == pIndex %} class="active" {% endif %}><a href="{% url 'sys_ClockIn:goal_index' p 0 %}?{{mywhere|join:'&'}}">{{p}}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'sys_ClockIn:goal_index' pIndex|add:1 0 %}?{{mywhere|join:'&'}}">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
+<!-- /.content -->
+{% endblock %}

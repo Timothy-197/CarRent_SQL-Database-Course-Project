@@ -1,0 +1,102 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+
+  <title>{{title}}</title>
+
+
+  <!-- bootstrap file -->
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- bootstrap file-->
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- main css -->
+  <!-- <link rel="stylesheet" type="text/css" href="{% static "index.css" %}" /> -->
+  <link rel="stylesheet" href="{% static 'sys_RegLog/style1.css' %}">
+  <link rel="stylesheet" href="{% static 'sys_RegLog/style2.css' %}">
+
+  <!-- message here -->
+
+  {% if messages %}
+  {% for message in messages %}
+
+  <script>
+    alert("{{ message }}");
+  </script>
+
+  {% endfor %}
+  {% endif %}
+</head>
+<body>
+  <ul class="topnav">
+    <li id="header_text"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #ffae00;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span></li>
+    
+    {% if user.is_authenticated %}
+    <li class="right"><a href="{% url "sys_RegLog:logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
+    <li class="right"><a href="{% url "sys_ClockIn:add_goal" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Add Goal</a></li>
+    <li class="right"><a href="{% url "sys_RegLog:reset_pwd" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Change Password</a></li>
+    {% else %}
+    <li class="right"><a  class="active" href="{% url "sys_RegLog:register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a></li>
+    <li class="right"><a href="{% url "sys_RegLog:login" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</a></li>
+    {% endif %}
+    <li class="right"><a href="{% url "sys_RegLog:index" %}">Home</a></li>
+  </ul>
+  <section>
+      <form action="" method="post">
+        {% csrf_token %}
+          <p style="font-size: 20px;"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:rgb(160, 0, 240)">l</span><span style="color: #fcc7ff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span> Sign up</p>
+          <input type="text" placeholder="Username" name="username">
+          <input type="email" placeholder="Email" name="email">
+          <input type="password" placeholder="Password" name="password1">
+          <input type="password" placeholder="Password confirmation" name="password2">
+          <select name = "user_type" style="width: 100%;
+          height: 50px;
+          border-radius: 8px;
+          background-color: transparent;
+          border: 1px solid rgba(255,255,255,0.5);
+          margin-bottom: 15px;
+          padding-left: 15px;
+          color: #fff;
+          outline: none;">
+            <option value="none" selected disabled hidden >UserType</option>
+      
+            <option value="customer">customer</option>
+          
+            <option value="renter">renter</option>
+
+          </select>
+          <button type="submit">Sign up</button>
+          <sub>
+              <div class="dropdown" style="text-decoration: none; color: #fff; cursor:pointer; text-align: left;">
+                  <span>See the requirement of passward</span>
+                  <div class="dropdown-content">
+                      <ul style="text-decoration: none; color: #fff; cursor:pointer; text-align: left; margin-left: 5%;">
+                          <li>Your password can’t be too similar to your other personal information.</li>
+                          <li>Your password must contain at least 8 characters.</li>
+                          <li>Your password can’t be a commonly used password.</li>    
+                          <li>Your password can’t be entirely numeric.</li>
+                      </ul>
+                  </div>
+                </div>
+          </sub></br>
+          <sub><a href="{% url "sys_RegLog:login" %}" style="text-decoration: none; color: #fff; cursor:pointer; text-align: center;">Already have an account ?</a></br></sub>
+      </form>
+  </section>
+</body>
+</html>

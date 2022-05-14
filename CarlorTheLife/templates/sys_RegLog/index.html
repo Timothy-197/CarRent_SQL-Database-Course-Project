@@ -1,0 +1,145 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+
+  <title>{{title}}</title>
+
+  <!-- bootstrap file -->
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <!-- bootstrap file-->
+
+  <!-- jQuery -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+  <!-- main css -->
+  <!-- <link rel="stylesheet" type="text/css" href="{% static "index.css" %}" /> -->
+  <link rel="stylesheet" href="{% static 'sys_RegLog/style2.css' %}">
+  <link rel="stylesheet" href="{% static 'sys_RegLog/style4.css' %}">
+  <link rel="stylesheet" href="{% static 'sys_RegLog/style5.css' %}">
+  <link rel="stylesheet" href="{% static 'sys_RegLog/jarallax.css' %}">
+
+
+
+  <!-- message here -->
+
+  {% if messages %}
+  {% for message in messages %}
+
+  <script>
+    alert("{{ message }}");
+  </script>
+
+  {% endfor %}
+  {% endif %}
+</head>
+
+<body>
+  <ul class="topnav">
+    <li id="header_text"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span></li>
+    
+    {% if user.is_authenticated %}
+    <li class="right"><a href="{% url "sys_RegLog:logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
+    <li class="right"><a href="{% url "sys_RegLog:reset_pwd" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Change Password</a></li>
+    {% else %}
+    <li class="right"><a href="{% url "sys_RegLog:register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a></li>
+    <li class="right"><a href="{% url "sys_RegLog:login" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</a></li>
+    {% endif %}
+    <li class="right"><a class="active" href="{% url "sys_RegLog:index" %}">Home</a></li>
+  </ul>
+  <div>
+    <span class="before"></span>
+    <span class="after"></span>
+    <span class="after1" style="--x:0"></span>
+    <span class="after1" style="--x:1"></span>
+    <span class="after1" style="--x:2"></span>
+    <span class="after1" style="--x:3"></span>
+
+    <section>
+        <div class="box">
+            <h2 data-jarallax-element="0 -200"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span>:Home page</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <video width="900px" muted autoplay="autoplay" loop="loop">
+                        <source src="/media/video/1.mp4" type="video/mp4" class="jarallax-img"/>
+                    </video>
+                    <!-- <img src="{% static 'sys_RegLog/1.gif' %}" class="jarallax-img"> -->
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p style="font-size: 20px;">On the home page, users can view their color currency and the remaining tasks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <h2 data-jarallax-element="0 200"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span>:Add Goal</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <video width="900px" muted autoplay="autoplay" loop="loop">
+                        <source src="../../media/video/2.mp4" type="video/mp4" class="jarallax-img"/>
+                    </video>
+                    <!-- <img src="{% static 'sys_RegLog/2.gif' %}" class="jarallax-img" > -->
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p style="font-size: 20px;">At goal section, users can add their goals in this section. After adding goals, users can also check it at the home page</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <h2 data-jarallax-element="0 -200"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span>:Get color currency</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <video width="900px" muted autoplay="autoplay" loop="loop">
+                        <source src="/media/video/3.mp4" type="video/mp4" class="jarallax-img"/>
+                    </video>
+                    <!-- <img src="{% static 'sys_RegLog/3.gif' %}" class="jarallax-img" > -->
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p style="font-size: 20px;">After finishing the task, users can get the color currency randomly which can be used in the NFT shop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="box">
+            <h2 data-jarallax-element="0 200"><span style="color: aqua;">C</span><span style="color: #2bff88;">a</span><span style="color: #fb00ff;">r</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span>:Purchase NFT</h2>
+            <div class="container">
+                <div class="imgBx jarallax">
+                    <video width="900px" muted autoplay="autoplay" loop="loop">
+                        <source src="/media/video/4.mp4" type="video/mp4" class="jarallax-img"/>
+                    </video>
+                    <!-- <img src="{% static 'sys_RegLog/4.gif' %}" class="jarallax-img"> -->
+                </div>
+                <div class="content" data-jarallax-element="-200 0">
+                    <p>If users have enough color currency, they can buy NFT in the NFT shop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript" src="{% static 'sys_RegLog/js/jarallax.js' %}"></script>
+<script type="text/javascript" src="{% static 'sys_RegLog/js/jarallax-element.js' %}" ></script>
+<script type="text/javascript">
+    jarallax(document.querySelectorAll('.jarallax'), {
+        speed: 0.5,
+    });
+</script>
+</body>
+
+</html>

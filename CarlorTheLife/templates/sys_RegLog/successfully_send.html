@@ -1,0 +1,29 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email_sending</title>
+    <link rel="stylesheet" href="{% static 'sys_RegLog/style1.css' %}">
+    <link rel="stylesheet" href="{% static 'sys_RegLog/style2.css' %}">
+</head>
+<body>
+    <ul class="topnav">
+        <li id="header_text"><span style="color: aqua;">C</span><span style="color: #2bff88;">o</span><span style="color:coral">l</span><span style="color: #fa8bff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span></li>
+
+      </ul>
+    <section>
+        <span class="before"></span>
+        <span class="after"></span>
+        <form action="{% url 'sys_RegLog:login' %}" method="">
+            {% csrf_token %}
+            <p style="font-size: 25px;"><span style="color: aqua;">C</span><span style="color: #2bff88;">o</span><span style="color:rgb(160, 0, 240)">l</span><span style="color: #fcc7ff;">o</span><span style="color: navajowhite;">r</span><span style="color:#fff">theLife</span></p> 
+            <p>Successfully Activated!</p>
+            <button type="submit"><a style="text-decoration: none; color: #fff; cursor:pointer; font-size: 15px;"><span class="glyphicon glyphicon-log-in"></span>Go to Login</a></button>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,298 @@
+{% extends 'sys_ClockIn/base.html' %}
+{% block extracss %}
+<script src="/static/sys_Purchase/js/jquery-3.5.1.min.js"></script>
+{% endblock %}
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Car
+      <small>Shop</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> HOME</a></li>
+      <li class="active">Car SHOP</li>
+    </ol>
+    <form action="" method="POST">
+      {% csrf_token %}
+    <select name = "brand" style="width: 15%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    outline: none;">
+      <option value="none" selected disabled hidden>{{ sel_brand }}</option>
+
+      <option value="All">Brand: All</option>
+
+      <option value="Tesla">Tesla</option>
+    
+      <option value="Ford">Ford</option>
+    
+      <option value="BMW">BMW</option>
+    
+      <option  value="Audi" value="audi">Audi</option>
+
+      <option  value="Porsche" value="audi">Porsche</option>
+    
+      <option  value="XiaoPeng" >XiaoPeng</option>
+
+      <option  value="Benz" >Benz</option>
+    </select>
+    <select name="color" style="width: 15%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    outline: none;">
+      <option value="none" selected disabled hidden>{{ sel_color }}</option>
+
+      <option value="All">Color: All</option>
+
+      <option value="red">red</option>
+    
+      <option value="green">green</option>
+    
+      <option value="blue">blue</option>
+    
+      <option value="grey">grey</option>
+
+      <option value="white">white</option>
+
+      <option value="black">black</option>
+
+      <option value="yellow">yellow</option>
+    </select>
+    <select name="category" style="width: 15%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    outline: none;">
+      <option value="{{ sel_category }}" selected disabled hidden>{{ sel_category }}</option>
+
+      <option value="All">Category: All</option>
+
+      <option value="car">car</option>
+    
+      <option value="suv">suv</option>
+    
+      <option value="sports car">sports car</option>
+    
+      <option value="truck">truck</option>
+
+    </select>
+    <select name="fuel_type" style="width: 15%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    outline: none;">
+      <option value="none" selected disabled hidden>{{ sel_fuel_type }}</option>
+
+      <option value="All">Fuel_Type: All</option>
+    
+      <option value= "ELECTRIC">ELECTRIC</option>
+    
+      <option value="GASOLINE">GASOLINE</option>
+    
+    </select>
+    <input type="submit" value="Filter" style="width: 15%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    outline: none;">
+  </form>
+  </section>
+
+<!-- Main content --> 
+<section class="content container-fluid">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">List of Cars</h3>
+            <h3 class="box-title">|   Your Balance: {{current_customer.balance}}</h3>
+  
+            <div class="box-tools" style="margin-right: 3%;">
+              <form action="{% url 'sys_Purchase:index' 1 %}" method="get">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search_shop" class="form-control pull-right" placeholder="Search">
+  
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          
+          
+            <div class="box-footer clearfix">
+                <div class="col-sm-12 col-md-6  col-lg-6 col-xl-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h2 style="color:#BB3D00"><i class="fa fa-paw" aria-hidden="true"></i> &nbsp;{{ShowCar.brand}}</h2>
+                        </div>
+                        <div class="card">
+                          <img src="/media/{{ ShowCar.image}}" class="card-img-top" alt="...">
+                          <!--
+
+                            <h4 class="card-title">NFTName</h4>
+                            <h5 class="card-subtitle mb-2">{{ShowNFT.NFT.NFTname}}</h5>
+                          -->
+                          <!--<div class="card-header">-->
+                            <div class="card-body">                          
+                            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                              <li class="nav-item">
+                              <a class="nav-link active"  href="#rent_price" role="tab" aria-controls="colortile" aria-selected="true"><h3>Rent Price</h3></a>
+                              </li>
+                              <li class="nav-item">
+                              <a class="nav-link" href="#description" role="tab" aria-controls="description" aria-selected="false"><h3>Description</h3></a>
+                              </li>
+                            </ul>
+                          <!--</div>-->
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="rent_price" role="tabpanel" aria-labelledby="colortile-tab">  
+                                <br>
+                                <div class="col-md-10 col-md-offset-1">
+                                  <!-- <h2 style="text-align: center;">{{ShowCar.brand}}-ID{{ShowCar.color}}-{{ShowCar.rent_price}}</h2> -->
+                                  <!-- <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="background-color: #ff0000" role="progressbar" style="width: 0%" aria-valuenow="{{p_r}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="background-color: #07db66" role="progressbar" style="width: 0%" aria-valuenow="{{p_g}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>            
+                                  <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="background-color: #267af7" role="progressbar" style="width: 0%" aria-valuenow="{{p_b}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div> -->
+                                  <!-- <h1 style="text-align: center;"><span style="font-size: 20px;">Rent Price: </span><span style="color: #ff0000;">{{ShowCar.rent_price}}</span> / <span style="color: #07db66;">{{ShowCar.rent_price}}</span> / <span style="color: #267af7;">{{ShowCar.rent_price}}</span></h1> -->
+                                  <!-- <h1 style="text-align: center;"><span style="font-size: 20px;">ColorTile: </span><span style="color: #ff0000;">{{ShowNFT.NFT.CT_red}}</span> / <span style="color: #07db66;">{{ShowNFT.NFT.CT_green}}</span> / <span style="color: #267af7;">{{ShowNFT.NFT.CT_blue}}</span></h1> -->
+                                  <h1 style="text-align: center;"><span style="font-size: 20px;">Rent Price: </span><span style="color: #ff0000;">{{ShowCar.rent_price}}$</span></h1>
+                                </div>
+                                <script>
+                                  var children = $.find(".progress-bar");
+                                  $(children).each(function () { // <- make sure getting only children elements
+                                    $(this).css("width", $(this).attr("aria-valuenow") + '%');
+                                  });
+                                  </script>
+                              </div>
+
+                              <div class="tab-pane" id="description" role="tabpanel">
+                                <br>
+                                <!-- <h3>Who is "{{ShowNFT.NFT.NFTname}}" ?</h3> -->
+                                <p class="card-text" style="font-size: 17px;" >{{ShowCar.brand}} </p>
+                                <p class="card-text" style="font-size: 17px;" >{{ShowCar.color}} </p>
+                                <p class="card-text" style="font-size: 17px;" >{{ShowCar.capacity}} </p>
+                                <p class="card-text" style="font-size: 17px;" >{{ShowCar.fuel_type}} </p>
+
+                                  
+                              </div>
+                               
+                            </div>
+                          </div>
+
+
+                            
+
+                        </div>
+          <!--
+                        <div class="thumbnail">
+                          <img src="/media/{{ ShowNFT.NFT.img_url}}" alt="...">
+                        </div>
+            
+                        <table class="table table-striped">  
+                                <tr>
+                                    <th width="30">Name</th>
+                                    <th>Description</th>
+                                    <th width="72">Red</th>
+                                    <th width="45">Green</th>
+                                    <th>Blue</th>
+                                </tr>
+                                <tr>
+                                    <td>{{ShowNFT.NFT.NFTname}}</td>
+                                    <td>{{ShowNFT.NFT.description}}</td>
+                                    <td>{{ShowNFT.NFT.CT_red}}</td>
+                                    <td>{{ShowNFT.NFT.CT_green}}</td>
+                                    <td>{{ShowNFT.NFT.CT_blue}}</td>
+                                </tr>
+                            </table>
+                            <li class="list-group-item">
+                              <b>购买方式: &nbsp; </b>  
+                              <tr>
+                                <td>{{ShowNFT.NFT.CT_red}}</td>
+                                <td>{{ShowNFT.NFT.CT_green}}</td>
+                                <td>{{ShowNFT.NFT.CT_blue}}</td>
+                            </tr>
+                            </li>
+                          -->
+
+                            <div class="panel-footer" style="height:50px">
+                              {% if ShowCarFlag == 1  %}
+                              <a href="{% url "sys_Purchase:rent"  ShowCar.car_id %}" class="btn btn-warning" style="width:130px;float:right"><i class="fa fa-shopping-basket" aria-hidden="true"></i> &nbsp; Rent</a>
+                              {% else %}
+                              <a href="#" class="btn btn-secondary" color=grey style="width:130px;float:right">Not Enough Money!</a>                       
+                              {% endif %}
+                            </div>
+                     
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6  col-lg-6 col-xl-9">
+                    <!--标签页内容-->
+                    <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true">&nbsp; Cars:</h5>
+                    <div class="row shoplist">
+                      {% for car in Carlist %}
+                      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                        
+                        <div class="card" >
+                          <img class="card-img-top" src="/media/{{ car.image }}" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title text-truncate">{{ car.brand }}</h5>
+                            <p class="card-text text-truncate">{{ car.description }}</p>
+                            <a href="{% url "sys_Purchase:index"  forloop.counter %}" class="btn btn-outline-info" role="button"><span class="fa fa-search" aria-hidden="true"></span> More</a>
+                          </div>
+                        </div> 
+                        
+                      </div>
+                      {% endfor %}   
+                    </div>  
+                </div>
+            </div>
+                    
+        </div>
+      </div>
+    </div>
+</section>
+
+<script>
+	$('#bologna-list a').on('click', function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	  })
+</script>
+
+{% endblock %}

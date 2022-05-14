@@ -1,0 +1,26 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+USE TRY1;
+
+
+
+DROP TABLE `user_goal`;
+
+CREATE TABLE `user_goal` (
+	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	-- `user_name` varchar(32) NOT NULL,
+	`username` varchar(50),
+	`user_id` int(10) unsigned,
+	`status` int(1) unsigned,
+	`description` varchar(50),
+	`create_at` datetime,
+	`update_at` datetime,
+	PRIMARY KEY (`id`));
+	
+	
+	
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body.color{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+    background-color: rgb(210,210,210);
+}
+.shell{
+    position: relative;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transform-style: preserve-3d;
+    perspective: 900px;
+}
+.shell .box{
+    position: inherit;
+    width: 200px;
+    height: 250PX;
+    transition: 0.3s;
+    overflow: hidden;
+    margin: 30px;
+    transform:rotateY(0);
+    transition-delay: 0.1s;
+    border-radius: 5px;
+    border: rgb(255, 214, 214) 5px solid;
+}
+
+.shell .box .content{
+    position: absolute;
+    
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.shell:hover .box{
+    transform: rotateY(30deg);
+
+}
+.shell .box:hover{
+    transform: rotateY(0deg) scale(1.35);
+    box-shadow: 0 25px 40px rgba(0,0,0,.7);
+    z-index: 1;
+}
+.shell .box:hover~.box{
+    transform: rotateY(-20deg);
+}

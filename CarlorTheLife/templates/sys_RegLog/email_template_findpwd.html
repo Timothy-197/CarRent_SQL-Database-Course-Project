@@ -1,0 +1,5 @@
+{% autoescape off %}
+Hi ,
+Please click on the link to reset your password,
+http://{{ domain }}{% url 'sys_RegLog:redirect_to_resetpwd' uidb64=uid token=token %}
+{% endautoescape %}
